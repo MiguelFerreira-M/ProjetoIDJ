@@ -39,7 +39,7 @@ public class JumpComponent : ActionSetComponent
                     if (onGround)
                     {
                         
-                        playerController.characterMovement.CharacterRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                        playerController.characterRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     }
                 }
                 else

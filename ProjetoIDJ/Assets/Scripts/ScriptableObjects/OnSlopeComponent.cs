@@ -5,10 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ActionsSetComponent/OnSlopeComponent")]
 public class OnSlopeComponent : ActionSetComponent
 {
+    [SerializeField]
+    private MoveComponent moveComponent;
+
     public override void OnFixedUpdate()
     {
         ProjectToSlope();
-        Debug.DrawLine(playerController.transform.position, playerController.transform.position + playerController.characterMovement.dirVector);
+        Debug.DrawLine(playerController.transform.position, playerController.transform.position + moveComponent.dirVector);
     }
 
     private Vector3 CheckPlaneNormal()
@@ -24,6 +27,6 @@ public class OnSlopeComponent : ActionSetComponent
 
     private void ProjectToSlope()
     {
-        playerController.characterMovement.dirVector = Vector3.ProjectOnPlane(playerController.characterMovement.dirVector, CheckPlaneNormal());
+        moveComponent.dirVector = Vector3.ProjectOnPlane(moveComponent.dirVector, CheckPlaneNormal());
     }
 }

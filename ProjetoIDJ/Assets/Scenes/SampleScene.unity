@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &53558480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4603451450010355565, guid: 54ef040564be8fd488a876602a65e1a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1682689400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540413111
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +917,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4603451449741956496, guid: 54ef040564be8fd488a876602a65e1a3,
+        type: 3}
+      propertyPath: _characterCamera
+      value: 
+      objectReference: {fileID: 53558480}
     - target: {fileID: 4603451449741956502, guid: 54ef040564be8fd488a876602a65e1a3,
         type: 3}
       propertyPath: m_RootOrder
@@ -979,6 +990,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 4603451449741956503, guid: 54ef040564be8fd488a876602a65e1a3,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a5536405f23d3747a5603172c97869a,
+        type: 2}
+    - target: {fileID: 4603451449741956503, guid: 54ef040564be8fd488a876602a65e1a3,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a5536405f23d3747a5603172c97869a,
+        type: 2}
+    - target: {fileID: 4603451449741956503, guid: 54ef040564be8fd488a876602a65e1a3,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 11400000, guid: b003ade0ffb138d4eb7469da8fa61301,
@@ -990,6 +1013,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603451449741956503, guid: 54ef040564be8fd488a876602a65e1a3,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCameraMovementX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603451449741956503, guid: 54ef040564be8fd488a876602a65e1a3,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCameraMovementY
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603451449741956503, guid: 54ef040564be8fd488a876602a65e1a3,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Jump
       objectReference: {fileID: 0}
@@ -998,7 +1031,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4603451450010355561, guid: 54ef040564be8fd488a876602a65e1a3, type: 3}
+    - {fileID: 4603451449741956507, guid: 54ef040564be8fd488a876602a65e1a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 54ef040564be8fd488a876602a65e1a3, type: 3}
 --- !u!1 &1928764173
 GameObject:

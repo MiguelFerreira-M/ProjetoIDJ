@@ -8,6 +8,18 @@ public class MoveComponent : ActionSetComponent
 {
     public List<ActionSetComponent> actionComponents = new List<ActionSetComponent>();
 
+    [SerializeField]
+    private MoveValues[] moveValues;
+    private int activeMovementSetIndex;
+
+    private Vector3 inputVector;
+    public Vector3 dirVector;
+    private Vector3 moveVector;
+
+    private float currentSpeed = 0f;
+
+    private bool actionMove = false;
+
 
     public override void OnFixedUpdate()
     {
@@ -16,7 +28,9 @@ public class MoveComponent : ActionSetComponent
 
     private void MoveCharacter()
     {
-        playerController.characterMovement.dirVector = playerController.transform.TransformDirection(playerController.characterMovement.inputVector);
+        activeMovementSetIndex = playerController.activeMovementSetIndex;
+
+        dirVector = playerController.transform.TransformDirection(inputVector);
 
         foreach(ActionSetComponent actionComponent in actionComponents)
         {
@@ -24,48 +38,48 @@ public class MoveComponent : ActionSetComponent
             actionComponent.OnFixedUpdate();
         }
 
-        playerController.characterMovement.moveVector = playerController.characterMovement.dirVector;
+        moveVector = dirVector;
 
         CalculateMoveSpeed();
-        playerController.characterMovement.moveVector *= playerController.characterMovement.currentSpeed;
+        moveVector *= currentSpeed;
 
-        playerController.characterMovement.CharacterRigidbody.MovePosition(playerController.transform.position + playerController.characterMovement.moveVector * Time.deltaTime);
+        playerController.characterRigidbody.MovePosition(playerController.transform.position + moveVector * Time.deltaTime);
     }
 
     public void OnMovement(InputAction.CallbackContext value)
     {
         if (value.performed)
         {
-            playerController.characterMovement.actionMove = true;
-            playerController.characterMovement.inputVector = new Vector3(value.ReadValue<Vector2>().x, 0, value.ReadValue<Vector2>().y);
+            actionMove = true;
+            inputVector = new Vector3(value.ReadValue<Vector2>().x, 0, value.ReadValue<Vector2>().y);
         }
         if (value.canceled)
         {
-            playerController.characterMovement.actionMove = false;
+            actionMove = false;
         }
     }
 
     private void CalculateMoveSpeed()
     {
-        if (playerController.characterMovement.actionMove)
+        if (actionMove)
         {
-            playerController.characterMovement.currentSpeed += ((playerController.activeMovementSet.moveSpeed * FactorOfDirection()) / (playerController.activeMovementSet.timeToMaxSpeed / Time.deltaTime));
+            currentSpeed += ((moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection()) / (moveValues[activeMovementSetIndex].timeToMaxSpeed / Time.deltaTime));
         }
         else
         {
-            playerController.characterMovement.currentSpeed -= ((playerController.activeMovementSet.moveSpeed * FactorOfDirection()) / (playerController.activeMovementSet.timeToStop / Time.deltaTime));
+            currentSpeed -= ((moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection()) / (moveValues[activeMovementSetIndex].timeToStop / Time.deltaTime));
         }
 
-        playerController.characterMovement.currentSpeed = Mathf.Clamp(playerController.characterMovement.currentSpeed, 0, playerController.activeMovementSet.moveSpeed * FactorOfDirection());
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection());
     }
 
     private float FactorOfDirection()
     {
-        if (playerController.characterMovement.inputVector.z < 0)
-            return playerController.activeMovementSet.factorOfMoveSpeedBackwards;
-        else if (playerController.characterMovement.inputVector.z == 0)
-            return playerController.activeMovementSet.factorOfMoveSpeedSideways;
+        if (inputVector.z < 0)
+            return moveValues[activeMovementSetIndex].factorOfMoveSpeedBackwards;
+        else if (inputVector.z == 0)
+            return moveValues[activeMovementSetIndex].factorOfMoveSpeedSideways;
         else
-            return playerController.activeMovementSet.factorOfMoveSpeedFoward;
+            return moveValues[activeMovementSetIndex].factorOfMoveSpeedFoward;
     }
 }

@@ -7,14 +7,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private CharacterMovement _characterMovement;
-    public CharacterMovement characterMovement { get => _characterMovement;}
+    private GameObject _characterCamera;
+    public GameObject characterCamera { get => _characterCamera;}
 
-    [SerializeField]
-    private CharacterCamera _characterCamera;
-    public CharacterCamera characterCamera { get => _characterCamera;}
+    private Rigidbody _characterRigidbody;
+    public Rigidbody characterRigidbody { get => _characterRigidbody; }
 
-    public ActionSet activeMovementSet { get; set; }
+    private ActionSet _activeMovementSet;
+    public ActionSet activeMovementSet { get => _activeMovementSet; }
+
+    private int _activeMovementSetIndex;
+    public int activeMovementSetIndex { get => _activeMovementSetIndex; }
+
 
     [SerializeField]
     private ActionSet[] movementSets;
@@ -23,34 +27,22 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        characterMovement.playerController = this;
-        characterCamera.playerController = this;
+        _characterRigidbody = GetComponent<Rigidbody>();
 
         ChangeActiveMovementSet(movementSets[0]);
+        _activeMovementSetIndex = 0;
+
+        activeMovementSet.CallStart();
     }
 
     void Update()
     {
-        if(activeMovementSet)
-            foreach (ActionSetComponent actionComponent in activeMovementSet.actionComponents)
-            {
-                if(actionComponent)
-                    actionComponent.OnUpdate();
-                else
-                    throw new System.NullReferenceException();
-            }
+        activeMovementSet.CallUpdate();
     }
 
     void FixedUpdate()
     {
-        if (activeMovementSet)
-            foreach (ActionSetComponent actionComponent in activeMovementSet.actionComponents)
-            {
-                if (actionComponent)
-                    actionComponent.OnFixedUpdate();
-                else
-                    throw new System.NullReferenceException();
-            }
+        activeMovementSet.CallFixedUpdate();
     }
 
     public void OnChangeActiveMovementSet(InputAction.CallbackContext value)
@@ -74,23 +66,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ChangeActiveMovementSet(ActionSet newMovementSet)
+    public void ChangeActiveMovementSet(ActionSet newMovementSet)
     {
         if (activeMovementSet != null)
         {
-            foreach (ActionSetComponent actionComponent in activeMovementSet.actionComponents)
-            {
-                actionComponent.playerController = null;
-                actionComponent.activeMovementAction = false;
-            }
+            activeMovementSet.SetDisabled();
         }
         
-        activeMovementSet = newMovementSet;
+        _activeMovementSet = newMovementSet;
 
-        foreach (ActionSetComponent actionComponent in activeMovementSet.actionComponents)
+        activeMovementSet.SetActive(this);
+
+        for(int i = 0; i < movementSets.Length; i++)
         {
-            actionComponent.playerController = this;
-            actionComponent.activeMovementAction = true;
+            if (newMovementSet.name == movementSets[i].name)
+            {
+                _activeMovementSetIndex = i;
+                return;
+            }
         }
+    }
+
+    public void ChangeActiveMovementSet(int newMovementSetIndex)
+    {
+        if (activeMovementSet != null)
+        {
+            activeMovementSet.SetDisabled();
+        }
+
+        _activeMovementSet = movementSets[newMovementSetIndex];
+
+        activeMovementSet.SetActive(this);
+
+        _activeMovementSetIndex = newMovementSetIndex;
     }
 }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbbb94634f6dca489a5fa37b7a16c35, type: 3}
+  m_Name: On Slope Component
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  activeMovementAction: 0
+  moveComponent: {fileID: 11400000, guid: f6298bc1130ac1b41a18fa1165d75191, type: 2}
