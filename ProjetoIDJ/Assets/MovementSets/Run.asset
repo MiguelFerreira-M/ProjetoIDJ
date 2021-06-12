@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d511450c4b30e40800fb06da4f9918, type: 3}
+  m_Name: Run
+  m_EditorClassIdentifier: 
+  _lookSensitivity: 7
+  _moveSpeed: 8
+  _timeToMaxSpeed: 1
+  _timeToStop: 0.7
+  _factorOfMoveSpeedFoward: 1
+  _factorOfMoveSpeedBackwards: 0.5
+  _factorOfMoveSpeedSideways: 0.75
+  actionComponents:
+  - {fileID: 11400000, guid: f6298bc1130ac1b41a18fa1165d75191, type: 2}
+  - {fileID: 11400000, guid: b003ade0ffb138d4eb7469da8fa61301, type: 2}
