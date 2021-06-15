@@ -46,10 +46,7 @@ public class ActionSet : ScriptableObject
         foreach (ActionSetComponent actionComponent in actionComponents)
         {
             if (actionComponent)
-            {
                 actionComponent.playerController = playerController;
-                actionComponent.activeMovementAction = true;
-            }
             else
                 throw new System.NullReferenceException();
         }
@@ -60,10 +57,7 @@ public class ActionSet : ScriptableObject
         foreach (ActionSetComponent actionComponent in actionComponents)
         {
             if (actionComponent)
-            {
                 actionComponent.playerController = null;
-                actionComponent.activeMovementAction = false;
-            }
             else
                 throw new System.NullReferenceException();
         }

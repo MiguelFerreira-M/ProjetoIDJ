@@ -29,8 +29,7 @@ public class PlayerController : MonoBehaviour
 
         _characterRigidbody = GetComponent<Rigidbody>();
 
-        ChangeActiveMovementSet(movementSets[0]);
-        _activeMovementSetIndex = 0;
+        ChangeActiveMovementSet(0);
 
         activeMovementSet.CallStart();
     }
@@ -45,46 +44,24 @@ public class PlayerController : MonoBehaviour
         activeMovementSet.CallFixedUpdate();
     }
 
-    public void OnChangeActiveMovementSet(InputAction.CallbackContext value)
+    public void ChangeActiveMovementSet(string newMovementSet)
     {
-        if(value.performed)
+        for (int i = 0; i < movementSets.Length; i++)
         {
-            foreach (ActionSet movementSet in movementSets)
+            if (newMovementSet == movementSets[i].name)
             {
-                if (movementSet.name == value.action.name)
+                if (activeMovementSet != null)
                 {
-                    ChangeActiveMovementSet(movementSet);
-                    return;
+                    activeMovementSet.SetDisabled();
                 }
-            }
-        }
-        
-        if(value.canceled)
-        {
-            ChangeActiveMovementSet(movementSets[0]);
-            return;
-        }
-    }
 
-    public void ChangeActiveMovementSet(ActionSet newMovementSet)
-    {
-        if (activeMovementSet != null)
-        {
-            activeMovementSet.SetDisabled();
-        }
-        
-        _activeMovementSet = newMovementSet;
-
-        activeMovementSet.SetActive(this);
-
-        for(int i = 0; i < movementSets.Length; i++)
-        {
-            if (newMovementSet.name == movementSets[i].name)
-            {
+                _activeMovementSet = movementSets[i];
                 _activeMovementSetIndex = i;
+                _activeMovementSet.SetActive(this);
+
                 return;
             }
-        }
+        }     
     }
 
     public void ChangeActiveMovementSet(int newMovementSetIndex)

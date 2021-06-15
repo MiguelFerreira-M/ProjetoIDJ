@@ -4,7 +4,25 @@ using UnityEngine;
 
 public abstract class ActionSetComponent : ScriptableObject
 {
-    public PlayerController playerController;
+    private PlayerController _playerController;
+    public PlayerController playerController
+    {
+        get => _playerController;
+        set
+        {
+            if (value == null)
+            {
+                _playerController = value;
+                activeMovementAction = false;
+            }
+            else
+            {
+                _playerController = value;
+                activeMovementAction = true;
+            }    
+        }
+    }
+
     public bool activeMovementAction = false;
 
     public virtual void OnStart() { }

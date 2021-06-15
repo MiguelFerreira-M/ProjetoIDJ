@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4603451449741956501}
   - component: {fileID: 4603451449741956500}
   - component: {fileID: 4603451449741956496}
-  - component: {fileID: 4603451449741956507}
   - component: {fileID: 4603451449741956503}
   m_Layer: 0
   m_Name: Player
@@ -79,24 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae5668a1e3fe5646a27890f49392ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterMovement: {fileID: 4603451449741956507}
-  _characterCamera: {fileID: 4603451450010355561}
+  _characterCamera: {fileID: 4603451450010355565}
   movementSets:
   - {fileID: 11400000, guid: ad16a75e5ddb48c4095d0271e00430d1, type: 2}
   - {fileID: 11400000, guid: 285785a18b6529340a8f88b3101d0e0a, type: 2}
---- !u!114 &4603451449741956507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4603451449741956506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f84bcbffb5408444ba600468ad839c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  - {fileID: 11400000, guid: 9c00a61ba774cd2439e34eeab778a990, type: 2}
 --- !u!114 &4603451449741956503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +111,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4603451449741956507}
+      - m_Target: {fileID: 11400000, guid: f6298bc1130ac1b41a18fa1165d75191, type: 2}
         m_MethodName: OnMovement
         m_Mode: 0
         m_Arguments:
@@ -140,8 +126,8 @@ MonoBehaviour:
     m_ActionName: Movement Controls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4603451450010355561}
-        m_MethodName: OnCameraMovement
+      - m_Target: {fileID: 11400000, guid: 2a5536405f23d3747a5603172c97869a, type: 2}
+        m_MethodName: OnCameraMovementX
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -155,8 +141,8 @@ MonoBehaviour:
     m_ActionName: Movement Controls/CameraMovement[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4603451449741956507}
-        m_MethodName: OnCameraMovement
+      - m_Target: {fileID: 11400000, guid: 2a5536405f23d3747a5603172c97869a, type: 2}
+        m_MethodName: OnCameraMovementY
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -185,8 +171,8 @@ MonoBehaviour:
     m_ActionName: Movement Controls/Run[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4603451449741956507}
-        m_MethodName: OnJump
+      - m_Target: {fileID: 11400000, guid: b003ade0ffb138d4eb7469da8fa61301, type: 2}
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -293,7 +279,6 @@ GameObject:
   - component: {fileID: 4603451450010355560}
   - component: {fileID: 4603451450010355567}
   - component: {fileID: 4603451450010355566}
-  - component: {fileID: 4603451450010355561}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -338,7 +323,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -366,16 +351,3 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4603451450010355565}
   m_Enabled: 1
---- !u!114 &4603451450010355561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4603451450010355565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b0435354a0fd641b192bb352b4b4d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}

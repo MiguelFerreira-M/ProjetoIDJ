@@ -20,7 +20,6 @@ public class MoveComponent : ActionSetComponent
 
     private bool actionMove = false;
 
-
     public override void OnFixedUpdate()
     {
         MoveCharacter();
