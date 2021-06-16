@@ -48,11 +48,11 @@ public class PlayerController : MonoBehaviour
         activeActionSet.CallFixedUpdate();
     }
 
-    public void ChangeActiveActionSet(string newActionSetIndex)
+    public void ChangeActiveActionSet(string newActionSetName)
     {
         for (int i = 0; i < actionSets.Length; i++)
         {
-            if (newActionSetIndex == actionSets[i].name)
+            if (newActionSetName == actionSets[i].name)
             {
                 if (activeActionSet != null)
                 {
@@ -95,8 +95,19 @@ public class PlayerController : MonoBehaviour
         return 0;
     }
 
-    public string GetActiveActionSetName()
+    public string GetActionSetName(int actionSetIndex)
     {
-        return actionSets[activeActionSetIndex].name;
+        if(actionSetIndex < actionSets.Length)
+        {
+            return activeActionSet.name;
+        }
+        else
+        Debug.LogError("NO ACTION SETS WITH THAT NAME");
+        return null;
+    }
+
+    public void OnDisable()
+    {
+        activeActionSet.SetDisabled();
     }
 }

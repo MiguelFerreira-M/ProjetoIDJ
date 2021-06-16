@@ -15,5 +15,6 @@ MonoBehaviour:
   actionComponents:
   - {fileID: 11400000, guid: 2a5536405f23d3747a5603172c97869a, type: 2}
   - {fileID: 11400000, guid: f6298bc1130ac1b41a18fa1165d75191, type: 2}
+  - {fileID: 11400000, guid: b003ade0ffb138d4eb7469da8fa61301, type: 2}
   - {fileID: 11400000, guid: a27babd694508fd4594c3a7c8a45df19, type: 2}
   - {fileID: 11400000, guid: 93b6fd95a34eac84092ec2eb898d9707, type: 2}

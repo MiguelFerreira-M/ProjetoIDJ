@@ -6,17 +6,19 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "ActionsSetComponent/MoveComponent")]
 public class MoveComponent : ActionSetComponent
 {
-    public List<ActionSetComponent> actionComponents = new List<ActionSetComponent>();
+    public Vector3Variable inputVector;
+    public Vector3Variable dirVector;
+    public Vector3Variable moveVector;
+    public FloatVariable currentSpeed;
+    [Space]
 
+    public List<ActionSetComponent> actionComponents = new List<ActionSetComponent>();
+    [Space]
+    
     [SerializeField]
     private MoveValues[] moveValues;
+
     private int activeMovementSetIndex;
-
-    private Vector3 inputVector;
-    public Vector3 dirVector;
-    private Vector3 moveVector;
-
-    private float currentSpeed = 0f;
 
     private bool actionMove = false;
 
@@ -29,7 +31,7 @@ public class MoveComponent : ActionSetComponent
     {
         activeMovementSetIndex = playerController.activeActionSetIndex;
 
-        dirVector = playerController.transform.TransformDirection(inputVector);
+        dirVector.value = playerController.transform.TransformDirection(inputVector.value);
 
         foreach(ActionSetComponent actionComponent in actionComponents)
         {
@@ -37,12 +39,12 @@ public class MoveComponent : ActionSetComponent
             actionComponent.OnFixedUpdate();
         }
 
-        moveVector = dirVector;
+        moveVector.value = dirVector.value;
 
         CalculateMoveSpeed();
-        moveVector *= currentSpeed;
+        moveVector.value *= currentSpeed.value;
 
-        playerController.characterRigidbody.MovePosition(playerController.transform.position + moveVector * Time.deltaTime);
+        playerController.characterRigidbody.MovePosition(playerController.transform.position + moveVector.value * Time.deltaTime);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -50,7 +52,7 @@ public class MoveComponent : ActionSetComponent
         if (context.performed)
         {
             actionMove = true;
-            inputVector = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+            inputVector.value = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
         }
         if (context.canceled)
         {
@@ -62,21 +64,21 @@ public class MoveComponent : ActionSetComponent
     {
         if (actionMove)
         {
-            currentSpeed += ((moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection()) / (moveValues[activeMovementSetIndex].timeToMaxSpeed / Time.deltaTime));
+            currentSpeed.value += ((moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection()) / (moveValues[activeMovementSetIndex].timeToMaxSpeed / Time.deltaTime));
         }
         else
         {
-            currentSpeed -= ((moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection()) / (moveValues[activeMovementSetIndex].timeToStop / Time.deltaTime));
+            currentSpeed.value -= ((moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection()) / (moveValues[activeMovementSetIndex].timeToStop / Time.deltaTime));
         }
 
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection());
+        currentSpeed.value = Mathf.Clamp(currentSpeed.value, 0, moveValues[activeMovementSetIndex].moveSpeed * FactorOfDirection());
     }
 
     private float FactorOfDirection()
     {
-        if (inputVector.z < 0)
+        if (inputVector.value.z < 0)
             return moveValues[activeMovementSetIndex].factorOfMoveSpeedBackwards;
-        else if (inputVector.z == 0)
+        else if (inputVector.value.z == 0)
             return moveValues[activeMovementSetIndex].factorOfMoveSpeedSideways;
         else
             return moveValues[activeMovementSetIndex].factorOfMoveSpeedFoward;

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e876f3ebf9a3fc4ebbbd30ffc0ab9f8, type: 3}
   m_Name: Move Component
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
   activeMovementAction: 1
+  inputVector: {fileID: 11400000, guid: 1c327f51bc0a0b740ae2cfea6feaccf7, type: 2}
+  dirVector: {fileID: 11400000, guid: 2eb569197c9a1724081a6f91f8ce0702, type: 2}
+  moveVector: {fileID: 11400000, guid: 30d80df37aa85584a99c9174c01e4cf5, type: 2}
+  currentSpeed: {fileID: 11400000, guid: aa7a94adc1dfe6a47a719fcfc5de2fba, type: 2}
   actionComponents:
   - {fileID: 11400000, guid: f8180e5f0ccfdee4ca9e696980ea95c4, type: 2}
   moveValues:
   - {fileID: 11400000, guid: 5838915a33b67b44d8419f30bd486e10, type: 2}
   - {fileID: 11400000, guid: 68e1093d3bb3af943b1a9b3460dccb95, type: 2}
   - {fileID: 11400000, guid: 5a98d077cba9b2546a9fa510036ada03, type: 2}
-  dirVector: {x: -0.09046592, y: 0.052230597, z: 0.99269855}

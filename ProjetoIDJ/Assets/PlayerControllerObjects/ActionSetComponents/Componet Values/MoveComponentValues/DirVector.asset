@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acbbb94634f6dca489a5fa37b7a16c35, type: 3}
-  m_Name: On Slope Component
+  m_Script: {fileID: 11500000, guid: 7262994395d678842b9772c5f9c41863, type: 3}
+  m_Name: DirVector
   m_EditorClassIdentifier: 
-  activeMovementAction: 0
-  dirVector: {fileID: 11400000, guid: 2eb569197c9a1724081a6f91f8ce0702, type: 2}
+  value: {x: 0, y: 0, z: 0}
