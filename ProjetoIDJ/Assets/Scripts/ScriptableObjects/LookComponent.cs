@@ -23,15 +23,15 @@ public class LookComponent : ActionSetComponent
 
     public override void OnUpdate()
     {
-        activeMovementSetIndex = playerController.activeMovementSetIndex;
+        activeMovementSetIndex = playerController.activeActionSetIndex;
         RotateCharacter();
         RotateCamera();
     }
 
 
-    public void OnCameraMovementY(InputAction.CallbackContext value)
+    public void OnCameraMovementY(InputAction.CallbackContext context)
     {
-        rotateY = value.ReadValue<float>();
+        rotateY = context.ReadValue<float>();
     }
 
     private void RotateCharacter()

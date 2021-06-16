@@ -28,9 +28,9 @@ public class JumpComponent : ActionSetComponent
             onGround = false;
     }
 
-    public void Jump(InputAction.CallbackContext value)
+    public void Jump(InputAction.CallbackContext context)
     {
-        if (value.performed)
+        if (context.performed)
         {
             if (activeMovementAction)
             {

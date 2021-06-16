@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7224efe71b6dac419c51c88b7a67329, type: 3}
-  m_Name: Move Values Sprint
+  m_Script: {fileID: 11500000, guid: 686047aef078e9d4a95c7ede3b1cba99, type: 3}
+  m_Name: Change To Sprint Component
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  timeToMaxSpeed: 2
-  timeToStop: 1
-  factorOfMoveSpeedFoward: 1
-  factorOfMoveSpeedBackwards: 0.25
-  factorOfMoveSpeedSideways: 0.5
+  activeMovementAction: 0

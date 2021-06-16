@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Run",
+                    "name": "Sprint",
                     "type": "Button",
                     "id": "12deb198-54cc-4d0c-8abb-a7d66a34e469",
                     "expectedControlType": "Button",
@@ -41,6 +41,14 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "05143e41-a9e4-4b16-877e-1742f8a14edb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ChangeMovementSpeed",
+                    "type": "Button",
+                    "id": "26c20add-8287-4256-a68f-77921eadc0f0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -131,7 +139,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Run",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -143,6 +151,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b788a187-c9b8-469b-9e16-29f97b103f0e",
+                    "path": "<Keyboard>/capsLock",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeMovementSpeed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

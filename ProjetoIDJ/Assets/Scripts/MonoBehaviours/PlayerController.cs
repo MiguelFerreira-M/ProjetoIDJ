@@ -13,15 +13,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _characterRigidbody;
     public Rigidbody characterRigidbody { get => _characterRigidbody; }
 
-    private ActionSet _activeMovementSet;
-    public ActionSet activeMovementSet { get => _activeMovementSet; }
+    private ActionSet _activeActionSet;
+    public ActionSet activeActionSet { get => _activeActionSet; }
 
-    private int _activeMovementSetIndex;
-    public int activeMovementSetIndex { get => _activeMovementSetIndex; }
+    private int _activeActiontSetIndex;
+    public int activeActionSetIndex { get => _activeActiontSetIndex; }
+
+    [HideInInspector]
+    public int defaultActionSetIndex;
 
 
     [SerializeField]
-    private ActionSet[] movementSets;
+    private ActionSet[] actionSets;
 
     void Start()
     {
@@ -29,52 +32,71 @@ public class PlayerController : MonoBehaviour
 
         _characterRigidbody = GetComponent<Rigidbody>();
 
-        ChangeActiveMovementSet(0);
+        ChangeActiveActionSet(0);
+        defaultActionSetIndex = 0;
 
-        activeMovementSet.CallStart();
+        activeActionSet.CallStart();
     }
 
     void Update()
     {
-        activeMovementSet.CallUpdate();
+        activeActionSet.CallUpdate();
     }
 
     void FixedUpdate()
     {
-        activeMovementSet.CallFixedUpdate();
+        activeActionSet.CallFixedUpdate();
     }
 
-    public void ChangeActiveMovementSet(string newMovementSet)
+    public void ChangeActiveActionSet(string newActionSetIndex)
     {
-        for (int i = 0; i < movementSets.Length; i++)
+        for (int i = 0; i < actionSets.Length; i++)
         {
-            if (newMovementSet == movementSets[i].name)
+            if (newActionSetIndex == actionSets[i].name)
             {
-                if (activeMovementSet != null)
+                if (activeActionSet != null)
                 {
-                    activeMovementSet.SetDisabled();
+                    activeActionSet.SetDisabled();
                 }
 
-                _activeMovementSet = movementSets[i];
-                _activeMovementSetIndex = i;
-                _activeMovementSet.SetActive(this);
+                _activeActionSet = actionSets[i];
+                _activeActiontSetIndex = i;
+                _activeActionSet.SetActive(this);
 
                 return;
             }
         }     
     }
 
-    public void ChangeActiveMovementSet(int newMovementSetIndex)
+    public void ChangeActiveActionSet(int newActionSetIndex)
     {
-        if (activeMovementSet != null)
+        if (activeActionSet != null)
         {
-            activeMovementSet.SetDisabled();
+            activeActionSet.SetDisabled();
         }
 
-        _activeMovementSet = movementSets[newMovementSetIndex];
+        _activeActionSet = actionSets[newActionSetIndex];
 
-        activeMovementSet.SetActive(this);
+        activeActionSet.SetActive(this);
 
-        _activeMovementSetIndex = newMovementSetIndex;
+        _activeActiontSetIndex = newActionSetIndex;
+    }
+
+    public int GetActionSetIndex(string actionSetName)
+    {
+        for (int i = 0; i < actionSets.Length; i++)
+        {
+            if (actionSetName == actionSets[i].name)
+            {
+                return i;
+            }
+        }
+        Debug.LogError("NO ACTION SETS WITH THAT NAME");
+        return 0;
+    }
+
+    public string GetActiveActionSetName()
+    {
+        return actionSets[activeActionSetIndex].name;
     }
 }

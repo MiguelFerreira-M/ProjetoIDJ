@@ -79,7 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterCamera: {fileID: 4603451450010355565}
-  movementSets:
+  defaultActionSetIndex: 0
+  actionSets:
   - {fileID: 11400000, guid: ad16a75e5ddb48c4095d0271e00430d1, type: 2}
   - {fileID: 11400000, guid: 285785a18b6529340a8f88b3101d0e0a, type: 2}
   - {fileID: 11400000, guid: 9c00a61ba774cd2439e34eeab778a990, type: 2}
@@ -156,8 +157,8 @@ MonoBehaviour:
     m_ActionName: Movement Controls/CameraMovementX[/Mouse/position/x]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4603451449741956496}
-        m_MethodName: OnChangeActiveMovementSet
+      - m_Target: {fileID: 11400000, guid: a27babd694508fd4594c3a7c8a45df19, type: 2}
+        m_MethodName: ChangeToSprint
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -184,6 +185,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 05143e41-a9e4-4b16-877e-1742f8a14edb
     m_ActionName: Movement Controls/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 93b6fd95a34eac84092ec2eb898d9707, type: 2}
+        m_MethodName: ChangeActiveActionSet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 26c20add-8287-4256-a68f-77921eadc0f0
+    m_ActionName: Movement Controls/ChangeMovementSpeed[/Keyboard/capsLock]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement Controls

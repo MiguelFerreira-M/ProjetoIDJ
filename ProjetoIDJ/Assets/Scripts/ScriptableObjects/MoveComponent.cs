@@ -27,7 +27,7 @@ public class MoveComponent : ActionSetComponent
 
     private void MoveCharacter()
     {
-        activeMovementSetIndex = playerController.activeMovementSetIndex;
+        activeMovementSetIndex = playerController.activeActionSetIndex;
 
         dirVector = playerController.transform.TransformDirection(inputVector);
 
@@ -45,14 +45,14 @@ public class MoveComponent : ActionSetComponent
         playerController.characterRigidbody.MovePosition(playerController.transform.position + moveVector * Time.deltaTime);
     }
 
-    public void OnMovement(InputAction.CallbackContext value)
+    public void OnMovement(InputAction.CallbackContext context)
     {
-        if (value.performed)
+        if (context.performed)
         {
             actionMove = true;
-            inputVector = new Vector3(value.ReadValue<Vector2>().x, 0, value.ReadValue<Vector2>().y);
+            inputVector = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
         }
-        if (value.canceled)
+        if (context.canceled)
         {
             actionMove = false;
         }
