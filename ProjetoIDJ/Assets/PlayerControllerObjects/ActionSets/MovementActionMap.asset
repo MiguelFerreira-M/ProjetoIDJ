@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc4463ee2367db4e8cea91c51e419a4, type: 3}
+  m_Name: MovementActionMap
+  m_EditorClassIdentifier: 
+  actionSets:
+  - {fileID: 11400000, guid: ad16a75e5ddb48c4095d0271e00430d1, type: 2}
+  - {fileID: 11400000, guid: 285785a18b6529340a8f88b3101d0e0a, type: 2}
+  - {fileID: 11400000, guid: 9c00a61ba774cd2439e34eeab778a990, type: 2}
+  playerController: {fileID: 0}
+  defaultActionSetIndex: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [SelectionBase]
@@ -13,101 +14,74 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _characterRigidbody;
     public Rigidbody characterRigidbody { get => _characterRigidbody; }
 
-    private ActionSet _activeActionSet;
-    public ActionSet activeActionSet { get => _activeActionSet; }
-
-    private int _activeActiontSetIndex;
-    public int activeActionSetIndex { get => _activeActiontSetIndex; }
-
     [HideInInspector]
-    public int defaultActionSetIndex;
-
+    private PlayerInput _playerInput;
+    public PlayerInput playerInput { get => _playerInput; }
 
     [SerializeField]
-    private ActionSet[] actionSets;
+    private ActionMapSet[] actionMapSets;
+
+    [HideInInspector]
+    public ActionMapSet activeActionMapSet;
+
+    [Space]
+    public OnTriggerEnterEvent onTriggerEnterEvent;
+
+    [Space]
+    public OnTriggerExitEvent OnTriggerExitEvent;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
         _characterRigidbody = GetComponent<Rigidbody>();
+        _playerInput = GetComponent<PlayerInput>();
 
-        ChangeActiveActionSet(0);
-        defaultActionSetIndex = 0;
+        activeActionMapSet = actionMapSets[0];
 
-        activeActionSet.CallStart();
+        activeActionMapSet.playerController = this;
+
+        activeActionMapSet.OnStart();
     }
 
     void Update()
     {
-        activeActionSet.CallUpdate();
+        activeActionMapSet.OnUpdate();
     }
 
     void FixedUpdate()
     {
-        activeActionSet.CallFixedUpdate();
-    }
-
-    public void ChangeActiveActionSet(string newActionSetName)
-    {
-        for (int i = 0; i < actionSets.Length; i++)
-        {
-            if (newActionSetName == actionSets[i].name)
-            {
-                if (activeActionSet != null)
-                {
-                    activeActionSet.SetDisabled();
-                }
-
-                _activeActionSet = actionSets[i];
-                _activeActiontSetIndex = i;
-                _activeActionSet.SetActive(this);
-
-                return;
-            }
-        }     
-    }
-
-    public void ChangeActiveActionSet(int newActionSetIndex)
-    {
-        if (activeActionSet != null)
-        {
-            activeActionSet.SetDisabled();
-        }
-
-        _activeActionSet = actionSets[newActionSetIndex];
-
-        activeActionSet.SetActive(this);
-
-        _activeActiontSetIndex = newActionSetIndex;
-    }
-
-    public int GetActionSetIndex(string actionSetName)
-    {
-        for (int i = 0; i < actionSets.Length; i++)
-        {
-            if (actionSetName == actionSets[i].name)
-            {
-                return i;
-            }
-        }
-        Debug.LogError("NO ACTION SETS WITH THAT NAME");
-        return 0;
-    }
-
-    public string GetActionSetName(int actionSetIndex)
-    {
-        if(actionSetIndex < actionSets.Length)
-        {
-            return activeActionSet.name;
-        }
-        else
-        Debug.LogError("NO ACTION SETS WITH THAT NAME");
-        return null;
+        activeActionMapSet.OnFixedUpdate();
     }
 
     public void OnDisable()
     {
-        activeActionSet.SetDisabled();
+        activeActionMapSet.activeActionSet.SetDisabled();
+    }
+
+    public void ChangeActiveActionMapSet(string ActionMapSetName)
+    {
+        foreach(ActionMapSet actionMapSet in actionMapSets)
+        {
+            if(actionMapSet.name == ActionMapSetName)
+            {
+                activeActionMapSet.DisableActiveActionSet();
+                activeActionMapSet = actionMapSet;
+                activeActionMapSet.playerController = this;
+
+                playerInput.SwitchCurrentActionMap(ActionMapSetName);
+
+                activeActionMapSet.OnStart();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        onTriggerEnterEvent.Invoke(other);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        OnTriggerExitEvent.Invoke(other);
     }
 }

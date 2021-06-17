@@ -15,11 +15,11 @@ public class ChangeActiveActionSetComponent : ActionSetComponent
         {
             if (context.performed)
             {
-                if(playerController.activeActionSetIndex == playerController.defaultActionSetIndex)
+                if(playerController.activeActionMapSet.activeActionSetIndex == playerController.activeActionMapSet.defaultActionSetIndex)
                 {
                     ChangDefaultActionSetIndex();
 
-                    playerController.ChangeActiveActionSet(playerController.defaultActionSetIndex);
+                    playerController.activeActionMapSet.ChangeActiveActionSet(playerController.activeActionMapSet.defaultActionSetIndex);
                 }
                 else
                 {
@@ -31,13 +31,13 @@ public class ChangeActiveActionSetComponent : ActionSetComponent
 
     private void ChangDefaultActionSetIndex()
     {
-        if (playerController.GetActionSetName(playerController.defaultActionSetIndex) == actionSetName1)
+        if (playerController.activeActionMapSet.GetActionSetName(playerController.activeActionMapSet.defaultActionSetIndex) == actionSetName1)
         {
-            playerController.defaultActionSetIndex = playerController.GetActionSetIndex(actionSetName2);
+            playerController.activeActionMapSet.defaultActionSetIndex = playerController.activeActionMapSet.GetActionSetIndex(actionSetName2);
         }
         else
         {
-            playerController.defaultActionSetIndex = playerController.GetActionSetIndex(actionSetName1);
+            playerController.activeActionMapSet.defaultActionSetIndex = playerController.activeActionMapSet.GetActionSetIndex(actionSetName1);
         }
     }
 }

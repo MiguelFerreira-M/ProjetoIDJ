@@ -23,7 +23,7 @@ public class LookComponent : ActionSetComponent
 
     public override void OnUpdate()
     {
-        activeMovementSetIndex = playerController.activeActionSetIndex;
+        activeMovementSetIndex = playerController.activeActionMapSet.activeActionSetIndex;
         RotateCharacter();
         RotateCamera();
     }

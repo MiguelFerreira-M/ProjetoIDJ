@@ -29,7 +29,7 @@ public class MoveComponent : ActionSetComponent
 
     private void MoveCharacter()
     {
-        activeMovementSetIndex = playerController.activeActionSetIndex;
+        activeMovementSetIndex = playerController.activeActionMapSet.activeActionSetIndex;
 
         dirVector.value = playerController.transform.TransformDirection(inputVector.value);
 

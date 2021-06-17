@@ -79,11 +79,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterCamera: {fileID: 4603451450010355565}
-  defaultActionSetIndex: 0
-  actionSets:
-  - {fileID: 11400000, guid: ad16a75e5ddb48c4095d0271e00430d1, type: 2}
-  - {fileID: 11400000, guid: 285785a18b6529340a8f88b3101d0e0a, type: 2}
-  - {fileID: 11400000, guid: 9c00a61ba774cd2439e34eeab778a990, type: 2}
+  actionMapSets:
+  - {fileID: 11400000, guid: c663ae825558bee489b449b2963130ea, type: 2}
+  - {fileID: 11400000, guid: 84fdbf544d7f25e4e9b7217209aea9f3, type: 2}
+  activeActionMapSet: {fileID: 0}
+  onTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a60580759c44b9f49af84e2f2083fd4e, type: 2}
+        m_MethodName: OnTriggerEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a60580759c44b9f49af84e2f2083fd4e, type: 2}
+        m_MethodName: OnTriggerExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4603451449741956503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,9 +227,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 26c20add-8287-4256-a68f-77921eadc0f0
     m_ActionName: Movement Controls/ChangeMovementSpeed[/Keyboard/capsLock]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: cc2e8593086051544bed22435a056172, type: 2}
+        m_MethodName: OnMoveInLadder
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ca2771f9-804c-4ee1-8bc4-7439926c51b3
+    m_ActionName: Ladder Controls/Up&DownLadder[/Keyboard/s,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a60580759c44b9f49af84e2f2083fd4e, type: 2}
+        m_MethodName: OnInteractWithLadder
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 904059ce-7b9c-403a-a4a0-b4f0d1d52652
+    m_ActionName: MovementActionMap/InteractWithLadder[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a60580759c44b9f49af84e2f2083fd4e, type: 2}
+        m_MethodName: OnInteractWithLadder
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 69b58760-6705-4039-8882-02b5d90b97ff
+    m_ActionName: LadderActionMap/InteractWithLadder[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Movement Controls
+  m_DefaultActionMap: MovementActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &4603451449968194075

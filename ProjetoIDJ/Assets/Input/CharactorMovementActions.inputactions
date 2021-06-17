@@ -2,7 +2,7 @@
     "name": "CharactorMovementActions",
     "maps": [
         {
-            "name": "Movement Controls",
+            "name": "MovementActionMap",
             "id": "f0713c5b-22a8-4d6c-b187-b6d342289d49",
             "actions": [
                 {
@@ -49,6 +49,14 @@
                     "name": "ChangeMovementSpeed",
                     "type": "Button",
                     "id": "26c20add-8287-4256-a68f-77921eadc0f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "InteractWithLadder",
+                    "type": "Button",
+                    "id": "904059ce-7b9c-403a-a4a0-b4f0d1d52652",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -162,6 +170,85 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeMovementSpeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db45beca-d676-41e5-9a16-88a9a7d3f317",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractWithLadder",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "LadderActionMap",
+            "id": "392daf01-8063-47c9-b0c0-1f4cbc2e714f",
+            "actions": [
+                {
+                    "name": "Up&DownLadder",
+                    "type": "Value",
+                    "id": "ca2771f9-804c-4ee1-8bc4-7439926c51b3",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "InteractWithLadder",
+                    "type": "Button",
+                    "id": "69b58760-6705-4039-8882-02b5d90b97ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "83e9ec7f-df4d-4502-b619-60383174f587",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up&DownLadder",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "d3833c11-3116-4886-9055-31a2999241de",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up&DownLadder",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "48510080-3399-4a06-8afb-b0323b520c6c",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up&DownLadder",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0ca7ac03-23d9-4de6-b9cf-2e36db36ee6e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractWithLadder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -12,11 +12,11 @@ public class ChangeToSprintComponent : ActionSetComponent
         {
             if (context.performed)
             {
-                playerController.ChangeActiveActionSet("Sprint");
+                playerController.activeActionMapSet.ChangeActiveActionSet("Sprint");
             }
             if (context.canceled)
             {
-                playerController.ChangeActiveActionSet(playerController.defaultActionSetIndex);
+                playerController.activeActionMapSet.ChangeActiveActionSet(playerController.activeActionMapSet.defaultActionSetIndex);
             }
         }
     }
